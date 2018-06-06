@@ -9,19 +9,27 @@ class DataParser:
     @property
     def dates(self):
         dates=[]
-        with open(self.file, 'r') as csvfile:
-            tt = csv.reader(csvfile, delimiter=',')
-            for row in tt:
-                dates.append(datetime.strptime(row[0], '%d-%m-%Y'))
+        try:
+            with open(self.file, 'r') as csvfile:
+                tt = csv.reader(csvfile, delimiter=',')
+                for row in tt:
+                    dates.append(datetime.strptime(row[0], '%d-%m-%Y'))
+        except FileNotFoundError:
+            print("problemy z nazwami pliku csv")
+            exit(-1)
         return dates
 
     @property
     def maxs(self):
         maxs = []
-        with open(self.file, 'r') as csvfile:
-            tt = csv.reader(csvfile, delimiter=',')
-            for row in tt:
-                maxs.append(float(row[1]))
+        try:
+            with open(self.file, 'r') as csvfile:
+                tt = csv.reader(csvfile, delimiter=',')
+                for row in tt:
+                    maxs.append(float(row[1]))
+        except FileNotFoundError:
+            print("problemy z nazwami pliku csv")
+            exit(-1)
         return maxs
 
     @property
@@ -36,20 +44,28 @@ class DataParser:
     @property
     def avgs(self):
         avgs = []
-        with open(self.file, 'r') as csvfile:
-            tt = csv.reader(csvfile, delimiter=',')
-            for row in tt:
-                avgs.append(float(row[3]))
+        try:
+            with open(self.file, 'r') as csvfile:
+                tt = csv.reader(csvfile, delimiter=',')
+                for row in tt:
+                    avgs.append(float(row[3]))
+        except FileNotFoundError:
+            print("problemy z nazwami pliku csv")
+            exit(-1)
         return avgs
 
     @property
     def precipations(self):
         pres = []
-        with open(self.file, 'r') as csvfile:
-            tt = csv.reader(csvfile, delimiter=',')
-            for row in tt:
-                if (not row[4].isalpha()):
-                    pres.append(float(row[4]))
-                else:
-                    pres.append(0)
+        try:
+            with open(self.file, 'r') as csvfile:
+                tt = csv.reader(csvfile, delimiter=',')
+                for row in tt:
+                    if (not row[4].isalpha()):
+                        pres.append(float(row[4]))
+                    else:
+                        pres.append(0)
+        except FileNotFoundError:
+            print("problemy z nazwami pliku csv")
+            exit(-1)
         return pres

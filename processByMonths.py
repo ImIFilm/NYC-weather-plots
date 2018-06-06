@@ -43,8 +43,5 @@ class ProcessByMonths:
                 counter = counter + 1
         return sum / counter
 
-
-x = ProcessByMonths(1)
-print(x.mmax)
-print(x.mmin)
-print(x.mavg)
+d=ProcessByMonths(2)
+d.mavg
