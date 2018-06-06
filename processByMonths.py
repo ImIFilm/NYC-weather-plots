@@ -1,21 +1,22 @@
 from dataParser import DataParser
 
-#Przetwarzanie danych na potrzeby wizualizacji roku z przedzialka miesieczna
+
+# Przetwarzanie danych na potrzeby wizualizacji roku z przedzialka miesieczna
 class ProcessByMonths:
     def __init__(self, month):
         self.month = month
 
     @property
     def mmax(self):
-        mmax=-500
+        mmax = -500
 
         x = DataParser('weatherNYC.csv')
-        dates=x.dates
-        maxs=x.maxs
+        dates = x.dates
+        maxs = x.maxs
         for i in range(len(dates)):
-            if (dates[i].month==self.month):
-                if(maxs[i]>mmax):
-                    mmax=maxs[i]
+            if (dates[i].month == self.month):
+                if (maxs[i] > mmax):
+                    mmax = maxs[i]
         return mmax
 
     @property
@@ -33,16 +34,17 @@ class ProcessByMonths:
 
     @property
     def mavg(self):
-        sum=0
-        counter=0
+        sum = 0
+        counter = 0
         x = DataParser('weatherNYC.csv')
         for i in range(len(x.dates)):
-            if(x.dates[i].month==self.month):
-                sum=sum+x.avgs[i]
-                counter=counter+1
-        return sum/counter
+            if (x.dates[i].month == self.month):
+                sum = sum + x.avgs[i]
+                counter = counter + 1
+        return sum / counter
 
-x=ProcessByMonths(1)
-print (x.mmax)
-print (x.mmin)
-print (x.mavg)
+
+x = ProcessByMonths(1)
+print(x.mmax)
+print(x.mmin)
+print(x.mavg)

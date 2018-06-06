@@ -44,9 +44,12 @@ class DataParser:
 
     @property
     def precipations(self):
-        precipations = []
+        pres = []
         with open(self.file, 'r') as csvfile:
             tt = csv.reader(csvfile, delimiter=',')
             for row in tt:
-                precipations.append(float(row[4]))
-        return precipations
+                if (not row[4].isalpha()):
+                    pres.append(float(row[4]))
+                else:
+                    pres.append(0)
+        return pres
